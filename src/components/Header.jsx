@@ -11,8 +11,8 @@ export default function Header({ cartCount, wishlistCount, onCart, onWishlist })
         <button className="icon-button mobile-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
           {menuOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
-        <a className="wordmark" href="#home" aria-label="LARANA STUDIO home">
-          <span>LARANA</span><small>Studio</small>
+        <a className="wordmark" href="#home" aria-label="CASTRO DENIM home">
+          <span>CASTRO</span><small>DENIM</small>
         </a>
         <div className="header-actions">
           <a className="icon-button search-button" href="#collection" aria-label="Browse the collection"><Search size={16} /></a>

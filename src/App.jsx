@@ -26,13 +26,13 @@ const journalImages = ['instagram-01.jpg', 'instagram-02.jpg', 'instagram-03.jpg
 
 function loadCart() {
   try {
-    const stored = JSON.parse(localStorage.getItem('larana-studio-cart') || localStorage.getItem('ad-style-cart') || '[]');
+    const stored = JSON.parse(localStorage.getItem('castro-denim-cart') || localStorage.getItem('larana-studio-cart') || localStorage.getItem('ad-style-cart') || '[]');
     if (!Array.isArray(stored)) throw new TypeError('Saved cart must be a list.');
     return stored.filter((item) => item && products.some((product) => product.id === item.id)
       && ['S', 'M', 'L', 'XL'].includes(item.size) && Number.isInteger(item.quantity) && item.quantity > 0)
       .map((item) => ({ ...products.find((product) => product.id === item.id), size: item.size, quantity: item.quantity }));
   } catch (error) {
-    console.warn('Unable to restore the saved LARANA STUDIO cart; starting with an empty bag.', error);
+    console.warn('Unable to restore the saved CASTRO DENIM cart; starting with an empty bag.', error);
     return [];
   }
 }
@@ -51,9 +51,9 @@ export default function App() {
   const saveCart = (nextCart) => {
     setCart(nextCart);
     try {
-      localStorage.setItem('larana-studio-cart', JSON.stringify(nextCart));
+      localStorage.setItem('castro-denim-cart', JSON.stringify(nextCart));
     } catch (error) {
-      console.error('Unable to save the LARANA STUDIO cart to this browser.', error);
+      console.error('Unable to save the CASTRO DENIM cart to this browser.', error);
     }
   };
   const addToCart = (product, chosenSize = size, buyNow = false) => {
@@ -126,13 +126,13 @@ export default function App() {
             </article>)}</div>
           </div>
           <section className="story-feature" id="story">
-            <div className="story-copy"><span className="eyebrow">A LITTLE ABOUT US</span><h2>Style That Speaks.</h2><p>LARANA STUDIO is more than just a clothing brand. It is a lifestyle. A statement. A way to express yourself with confidence, comfort and style.</p><a className="text-link" href="mailto:hello@laranastudio.in">OUR STORY <ArrowRight size={13} /></a></div>
+            <div className="story-copy"><span className="eyebrow">A LITTLE ABOUT US</span><h2>Style That Speaks.</h2><p>CASTRO DENIM is more than just a clothing brand. It is a lifestyle. A statement. A way to express yourself with confidence, comfort and style.</p><a className="text-link" href="mailto:hello@castrodenim.in">OUR STORY <ArrowRight size={13} /></a></div>
             <img className="story-photo" src="/images/story-rack.jpg" alt="A thoughtful edit of everyday wardrobe essentials" loading="lazy" />
           </section>
         </section>
 
-        <section className="instagram-section section-wrap reveal-section" id="journal"><div className="section-heading"><div><span className="eyebrow">A GOOD FIT, ON YOUR FEED</span><h2>Instagram Collection</h2></div><a className="text-link" href="https://instagram.com" target="_blank" rel="noreferrer">@LARANASTUDIO ↗</a></div><div className="instagram-grid">{journalImages.map((image, index) => <a key={image} className={`instagram-tile instagram-tile-${index + 1}`} href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Visit LARANA STUDIO on Instagram" style={{ backgroundImage: `url(/images/${image})` }}><span>FOLLOW ALONG ↗</span></a>)}</div></section>
-        <div className="newsletter-strip"><span>GOOD STYLE, STRAIGHT TO YOUR INBOX.</span><a href="mailto:hello@laranastudio.in">SAY HELLO <ArrowRight size={14} /></a></div>
+        <section className="instagram-section section-wrap reveal-section" id="journal"><div className="section-heading"><div><span className="eyebrow">A GOOD FIT, ON YOUR FEED</span><h2>Instagram Collection</h2></div><a className="text-link" href="https://instagram.com" target="_blank" rel="noreferrer">@CASTRODENIM ↗</a></div><div className="instagram-grid">{journalImages.map((image, index) => <a key={image} className={`instagram-tile instagram-tile-${index + 1}`} href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Visit CASTRO DENIM on Instagram" style={{ backgroundImage: `url(/images/${image})` }}><span>FOLLOW ALONG ↗</span></a>)}</div></section>
+        <div className="newsletter-strip"><span>GOOD STYLE, STRAIGHT TO YOUR INBOX.</span><a href="mailto:hello@castrodenim.in">SAY HELLO <ArrowRight size={14} /></a></div>
       </main>
       <Footer />
       <CartDrawer open={drawer !== null} onClose={() => setDrawer(null)} title={drawer === 'wishlist' ? 'YOUR WISHLIST' : 'YOUR BAG'} items={drawer === 'wishlist' ? wishlistedProducts.map((product) => ({ ...product, quantity: 1 })) : cart} onQuantity={changeQuantity} onRemove={drawer === 'wishlist' ? (id) => toggleWishlist(id) : removeItem} isWishlist={drawer === 'wishlist'} />
